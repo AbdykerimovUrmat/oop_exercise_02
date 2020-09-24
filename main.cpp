@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//строку нижнему регистру
 void toLower(string& s) {
 	for(auto& it: s) {
 		it = tolower(it);
@@ -20,7 +21,7 @@ public:
 
 	bool inCity(string);
 	bool inStreet(string);
-	
+
 	bool operator== (const Address&);
 	bool operator& (const Address&);
 
@@ -33,6 +34,7 @@ private:
 	int apartment;
 };
 
+//конструкторы
 Address::Address() {
 	city = "";
 	street = "";
@@ -63,11 +65,11 @@ bool Address::inCity(string c) {
 bool Address::inStreet(string s) {
 	return (s == street);
 }
-
+//оператор сравнения
 bool Address::operator== (const Address& val) {
 	return (val.city == city && street == val.street && house == val.house && apartment == val.apartment);
 }
-
+//оператор нахождения рядом
 bool Address::operator& (const Address& val) {
 	return (val.city == city && street == val.street && abs(house - val.house) == 1);	
 }
@@ -85,6 +87,8 @@ void Address::print() {
 	cout << city << " " << street << " " << house << " " << apartment << endl;
 }
 
+
+//пользовательский литерал
 Address operator"" _adrs(const char* val, unsigned) {
 	string fl = val;
 	wht_clr(fl);
